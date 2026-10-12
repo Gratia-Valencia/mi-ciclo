@@ -24,8 +24,12 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: 🤖 Preparar Android
-        uses: android-actions/setup-android@v3
+      # Los ordenadores de GitHub ya traen Android instalado (ANDROID_HOME): no hace falta prepararlo.
+      - name: 🤖 Comprobar Android
+        run: |
+          echo "Android en: $ANDROID_HOME"
+          ls "$ANDROID_HOME/build-tools" | tail -3
+          ls "$ANDROID_HOME/platforms" | tail -3
 
       - name: 🔐 Sacar la llave de firma de los secretos
         env:
